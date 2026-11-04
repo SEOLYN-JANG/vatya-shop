@@ -85,20 +85,15 @@ h2.sec{font-size:32px;font-weight:800;color:var(--blue);letter-spacing:-.02em;li
 .dots i.on{opacity:1}
 .hero .arrows button{border-color:rgba(255,255,255,.8);color:#fff;background:rgba(0,0,0,.15)}
 
-/* video: full-bleed muted loop under the hero (ref. ilkwdesign.com). replace img/main.mp4 + poster */
-.video{position:relative;background:#111;overflow:hidden}
-.video video{display:block;width:100%;height:clamp(240px,52vw,760px);object-fit:cover}
+/* video: muted loop under the hero, container width with a gap above (ref. ilkwdesign.com; owner picked variant B 2026-11-04). replace img/main.mp4 + poster */
+.video{position:relative;background:#fff;padding:56px 0 24px}
+.video .box{position:relative;width:min(var(--container),100% - 48px);margin:0 auto;border-radius:var(--radius);overflow:hidden;background:#111}
+.video video{display:block;width:100%;height:clamp(220px,45vw,680px);object-fit:cover}
 .video .play{position:absolute;left:50%;top:50%;width:84px;height:84px;margin:-42px 0 0 -42px;border-radius:50%;border:1.5px solid rgba(255,255,255,.9);background:rgba(0,0,0,.25);color:#fff;display:grid;place-items:center;cursor:pointer;backdrop-filter:blur(4px)}
 .video .play .ico{width:30px;height:30px;fill:#fff;stroke:none;margin-left:4px}
 .video.playing .play{display:none}
 .video .sound{position:absolute;right:24px;bottom:24px;height:36px;padding:0 14px;border-radius:999px;border:1.5px solid rgba(255,255,255,.8);background:rgba(0,0,0,.3);color:#fff;font-size:12px;font-weight:800;letter-spacing:.12em;cursor:pointer}
 .video .cap{position:absolute;left:24px;bottom:24px;color:#fff;font-size:13px;letter-spacing:.14em;font-weight:700;opacity:.85}
-
-/* video variant B (?video=b): gap under the hero + container width with side margins (ref. ilkwdesign). pick one, then make it the default */
-html[data-video="b"] .video{background:#fff;padding:56px 0 24px}
-html[data-video="b"] .video .box{position:relative;width:min(var(--container),100% - 48px);margin:0 auto;border-radius:var(--radius);overflow:hidden;background:#111}
-html[data-video="b"] .video video{height:clamp(220px,45vw,680px)}
-@media(max-width:899px){html[data-video="b"] .video{padding:24px 0 8px}html[data-video="b"] .video .box{width:min(var(--container),100% - 32px)}}
 
 /* category chips */
 .cats{border-bottom:1px solid var(--line);background:#fff}
@@ -245,6 +240,8 @@ html[data-video="b"] .video video{height:clamp(220px,45vw,680px)}
   .grid2 .prd strong{font-size:16px;margin-top:12px}
   .grid2 .prd .sum{font-size:13px}
   .grid2 .prd .price{font-size:16px}
+  .video{padding:24px 0 8px}
+  .video .box{width:min(var(--container),100% - 32px)}
   .video .play{width:60px;height:60px;margin:-30px 0 0 -30px}
   .video .play .ico{width:22px;height:22px}
   .video .sound{right:14px;bottom:14px}
