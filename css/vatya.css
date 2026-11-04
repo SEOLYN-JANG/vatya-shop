@@ -94,6 +94,12 @@ h2.sec{font-size:32px;font-weight:800;color:var(--blue);letter-spacing:-.02em;li
 .video .sound{position:absolute;right:24px;bottom:24px;height:36px;padding:0 14px;border-radius:999px;border:1.5px solid rgba(255,255,255,.8);background:rgba(0,0,0,.3);color:#fff;font-size:12px;font-weight:800;letter-spacing:.12em;cursor:pointer}
 .video .cap{position:absolute;left:24px;bottom:24px;color:#fff;font-size:13px;letter-spacing:.14em;font-weight:700;opacity:.85}
 
+/* video variant B (?video=b): gap under the hero + container width with side margins (ref. ilkwdesign). pick one, then make it the default */
+html[data-video="b"] .video{background:#fff;padding:56px 0 24px}
+html[data-video="b"] .video .box{position:relative;width:min(var(--container),100% - 48px);margin:0 auto;border-radius:var(--radius);overflow:hidden;background:#111}
+html[data-video="b"] .video video{height:clamp(220px,45vw,680px)}
+@media(max-width:899px){html[data-video="b"] .video{padding:24px 0 8px}html[data-video="b"] .video .box{width:min(var(--container),100% - 32px)}}
+
 /* category chips */
 .cats{border-bottom:1px solid var(--line);background:#fff}
 .cats ul{display:flex;gap:6px;height:60px;align-items:center;font-size:15px;font-weight:600;color:var(--ink-2);overflow-x:auto;scrollbar-width:none}
