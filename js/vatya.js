@@ -16,8 +16,7 @@
       '<button type="button" class="wish" aria-label="찜">' + heart + '</button>' +
       '<img src="' + p.img + '" alt="' + p.name + '" loading="lazy"></div>' +
       '<strong>' + p.name + '</strong><div class="sum">' + p.sum + '</div>' +
-      '<div class="price">' + priceHtml(p) + '</div>' +
-      '<div class="rv">리뷰 <b>' + p.rv + '</b> · 평점 ' + p.rate + '</div></a></li>';
+      '<div class="price">' + priceHtml(p) + '</div></a></li>';
   }
   function render(sel, list) {
     var el = document.querySelector(sel); if (!el) return;
@@ -60,6 +59,19 @@
       hero.addEventListener('touchend', function (e) { var dx = e.changedTouches[0].clientX - sx; if (Math.abs(dx) > 40) { go(dx < 0 ? i + 1 : i - 1); auto(); } });
       go(0); auto();
     }
+    /* video section: autoplay muted when a source exists, play button fallback, sound toggle */
+    var vs = document.querySelector('.video');
+    if (vs) {
+      var v = vs.querySelector('video'), pb = vs.querySelector('.play'), sb = vs.querySelector('.sound');
+      function tryPlay() { var pr = v.play(); if (pr && pr.then) pr.then(function () { vs.classList.add('playing'); }).catch(function () { vs.classList.remove('playing'); }); }
+      v.addEventListener('playing', function () { vs.classList.add('playing'); });
+      v.addEventListener('pause', function () { vs.classList.remove('playing'); });
+      v.addEventListener('error', function () { vs.classList.remove('playing'); }, true);
+      pb.addEventListener('click', function () { tryPlay(); });
+      v.addEventListener('click', function () { if (!v.paused) v.pause(); else tryPlay(); });
+      sb.addEventListener('click', function () { v.muted = !v.muted; sb.textContent = v.muted ? 'SOUND ON' : 'SOUND OFF'; });
+      if (!/[?&]shot=1/.test(location.search) && v.querySelector('source') && v.querySelector('source').getAttribute('src')) tryPlay();
+    }
     /* category chips: mark current */
     var cur = qs.get('cate') || (location.pathname.indexOf('list.html') > -1 ? 'all' : null);
     document.querySelectorAll('.cats a, .gnb a[data-cate]').forEach(function (a) {
@@ -68,7 +80,7 @@
     });
     /* index */
     if (document.querySelector('[data-list="recommend"]')) {
-      render('[data-list="recommend"]', P.slice(0, 8));
+      render('[data-list="recommend"]', P.slice(0, 4));
       render('[data-list="best"]', P.filter(function (p) { return p.tag === 'BEST' || p.tag === 'SET'; }).slice(0, 4));
     }
     /* list */
@@ -102,7 +114,6 @@
       dt.querySelector('.info h1').textContent = p.name;
       dt.querySelector('.info .sum').textContent = p.sum;
       dt.querySelector('.info .price').innerHTML = priceHtml(p);
-      dt.querySelector('.info .rv').innerHTML = '리뷰 <b>' + p.rv + '</b> · 평점 ' + p.rate;
       dt.querySelector('.spec').innerHTML = Object.keys(p.spec || {}).map(function (k) { return '<div><dt>' + k + '</dt><dd>' + p.spec[k] + '</dd></div>'; }).join('') + '<div><dt>배송비</dt><dd>3,000원 (5만원 이상 무료)</dd></div>';
       var unit = p.sale ? Math.round(p.price * (100 - p.sale) / 100) : p.price, q = 1;
       var qn = dt.querySelector('.qty .ctl span'), qt = dt.querySelector('.qty b'), tt = dt.querySelector('.total b');
