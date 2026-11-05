@@ -144,13 +144,17 @@ body.home .hero::before{content:"";position:absolute;left:0;right:0;top:0;height
 /* best sellers: 2-column full-bleed squares (ref. ilkwdesign), name left / price right only */
 .best-full{padding:56px 0 0}
 .best-full .head{width:min(var(--container),100% - 48px);margin:0 auto 24px;display:flex;align-items:flex-end;justify-content:space-between}
-.best-full ul{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:2px;background:#fff}
+/* 6 items, horizontal slider showing 4 (2 on mobile): .viewport clips, ul slides with translateX (js) */
+.best-full .head .arrows{color:var(--blue)}
+.best-full .viewport{overflow:hidden}
+.best-full ul{display:flex;gap:2px;background:#fff;transition:transform .6s ease;will-change:transform}
+.best-full .prd{flex:0 0 calc((100% - 6px) / 4)}
 .best-full .prd .img{aspect-ratio:1/1;border-radius:0;background:var(--grey)}
 .best-full .prd:hover .img img{transform:none}
 .best-full .prd a{display:block}
-.best-full .prd .cap{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:14px 20px 26px;font-size:16px}
-.best-full .prd .cap strong{font-size:16px;font-weight:600;margin:0;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.best-full .prd .cap .price{margin:0;font-size:16px;font-weight:600;color:var(--ink);white-space:nowrap}
+.best-full .prd .cap{display:flex;flex-direction:column;align-items:center;text-align:center;gap:4px;padding:18px 16px 30px}
+.best-full .prd .cap strong{font-size:19px;font-weight:700;margin:0;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
+.best-full .prd .cap .price{margin:0;font-size:18px;font-weight:700;color:var(--blue);white-space:nowrap}
 /* designers: one designer per slide (auto roll), stripe band in the middle */
 .designers{position:relative;background:#fff;padding:56px 0 0;overflow:hidden}
 /* slides stack on top of each other and cross-fade (owner: "뚝뚝 끊김" → 스르륵) */
@@ -324,9 +328,10 @@ body.home .hero::before{content:"";position:absolute;left:0;right:0;top:0;height
   .video .box{width:min(1160px,100% - 32px)}
   .best-full{padding:36px 0 0}
   .best-full .head{margin-bottom:14px}
-  .best-full ul{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .best-full .prd .cap{padding:10px 16px 20px;font-size:14px}
-  .best-full .prd .cap strong,.best-full .prd .cap .price{font-size:14px}
+  .best-full .prd{flex-basis:calc((100% - 2px) / 2)}
+  .best-full .prd .cap{padding:12px 10px 22px}
+  .best-full .prd .cap strong{font-size:15px}
+  .best-full .prd .cap .price{font-size:15px}
   .designers{padding:36px 0 0}
   .designers .track{min-height:0}
   .designers .slide{grid-template-columns:1fr}

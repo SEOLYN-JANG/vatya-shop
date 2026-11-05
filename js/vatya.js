@@ -94,6 +94,19 @@
         var price = won(p.sale ? Math.round(p.price * (100 - p.sale) / 100) : p.price);
         return '<li class="prd"><a href="detail.html?p=' + p.id + '"><div class="img"><img src="' + p.img + '" alt="' + p.name + '"></div><div class="cap"><strong>' + p.name + '</strong><span class="price">' + price + '</span></div></a></li>';
       }).join('');
+      /* slider: step one item, 4 visible on pc / 2 on mobile, swipe + arrows + 4s auto */
+      var bsec = bf.closest('.best-full'), bi = 0, btm;
+      function bper() { return window.innerWidth < 900 ? 2 : 4; }
+      function bmax() { return Math.max(0, bf.children.length - bper()); }
+      function bgo(n) { bi = Math.max(0, Math.min(bmax(), n)); var li = bf.children[0]; if (!li) return; var step = li.getBoundingClientRect().width + 2; bf.style.transform = 'translateX(' + (-bi * step) + 'px)'; }
+      function bauto() { clearInterval(btm); if (!/[?&]shot=1/.test(location.search)) btm = setInterval(function () { bgo(bi >= bmax() ? 0 : bi + 1); }, 4000); }
+      bsec.querySelector('.bprev') && bsec.querySelector('.bprev').addEventListener('click', function () { bgo(bi - 1); bauto(); });
+      bsec.querySelector('.bnext') && bsec.querySelector('.bnext').addEventListener('click', function () { bgo(bi + 1); bauto(); });
+      var bx = 0;
+      bf.addEventListener('touchstart', function (e) { bx = e.touches[0].clientX; }, { passive: true });
+      bf.addEventListener('touchend', function (e) { var dx = e.changedTouches[0].clientX - bx; if (Math.abs(dx) > 40) { bgo(dx < 0 ? bi + 1 : bi - 1); bauto(); } });
+      window.addEventListener('resize', function () { bgo(bi); });
+      bgo(0); bauto();
     }
     /* index: designers, one per slide, auto roll 6s */
     var dsec = document.querySelector('.designers');
