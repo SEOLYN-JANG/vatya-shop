@@ -78,10 +78,32 @@
       var id = a.getAttribute('data-cate');
       if (cur !== null && id === cur) a.classList.add('on');
     });
-    /* index */
-    if (document.querySelector('[data-list="recommend"]')) {
-      render('[data-list="recommend"]', P.slice(0, 4));
-      render('[data-list="best"]', P.filter(function (p) { return p.tag === 'BEST' || p.tag === 'SET'; }).slice(0, 4));
+    /* header: transparent on home until scrolled */
+    var hd = document.querySelector('.header');
+    if (hd && document.body.classList.contains('home')) {
+      function sc() { hd.classList.toggle('scrolled', window.scrollY > 40); }
+      window.addEventListener('scroll', sc, { passive: true }); sc();
+      if (/[?&]scrolled=1/.test(location.search)) hd.classList.add('scrolled');
+    }
+    /* index: best sellers full-bleed (ids from data-ids) */
+    var bf = document.querySelector('[data-list="best-full"]');
+    if (bf) {
+      var ids = (bf.getAttribute('data-ids') || '').split(',');
+      bf.innerHTML = ids.map(function (id) {
+        var p = byId(id.trim()); if (!p) return '';
+        var price = won(p.sale ? Math.round(p.price * (100 - p.sale) / 100) : p.price);
+        return '<li class="prd"><a href="detail.html?p=' + p.id + '"><div class="img"><img src="' + p.img + '" alt="' + p.name + '"></div><div class="cap"><strong>' + p.name + '</strong><span class="price">' + price + '</span></div></a></li>';
+      }).join('');
+    }
+    /* index: designers, one per slide, auto roll 6s */
+    var dsec = document.querySelector('.designers');
+    if (dsec) {
+      var ds = dsec.querySelectorAll('.slide'), di = 0, dtm, cnt = dsec.querySelector('.cnt');
+      function dgo(n) { di = (n + ds.length) % ds.length; ds.forEach(function (s, k) { s.classList.toggle('on', k === di); }); if (cnt) cnt.textContent = ('0' + (di + 1)).slice(-2) + ' / ' + ('0' + ds.length).slice(-2); }
+      function dauto() { clearInterval(dtm); if (!/[?&]shot=1/.test(location.search)) dtm = setInterval(function () { dgo(di + 1); }, 6000); }
+      dsec.querySelector('.dprev') && dsec.querySelector('.dprev').addEventListener('click', function () { dgo(di - 1); dauto(); });
+      dsec.querySelector('.dnext') && dsec.querySelector('.dnext').addEventListener('click', function () { dgo(di + 1); dauto(); });
+      dgo(0); dauto();
     }
     /* list */
     var lg = document.querySelector('[data-list="cate"]');
