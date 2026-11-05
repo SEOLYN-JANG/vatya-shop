@@ -78,16 +78,6 @@
       var id = a.getAttribute('data-cate');
       if (cur !== null && id === cur) a.classList.add('on');
     });
-    /* full menu: blue dot → stripe wipe → blue menu + search */
-    var fm = document.getElementById('fullmenu');
-    if (fm) {
-      function openMenu() { document.body.classList.add('menu-open'); setTimeout(function () { var inp = fm.querySelector('input'); if (inp && window.innerWidth >= 900) inp.focus(); }, 1100); }
-      function closeMenu() { document.body.classList.remove('menu-open'); }
-      document.querySelectorAll('[data-open-menu]').forEach(function (b) { b.addEventListener('click', openMenu); });
-      document.querySelectorAll('[data-close-menu]').forEach(function (b) { b.addEventListener('click', closeMenu); });
-      document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeMenu(); });
-      if (/[?&]menu=1/.test(location.search)) { if (/[?&]shot=1/.test(location.search)) document.body.classList.add('noanim'); document.body.classList.add('menu-open'); }
-    }
     /* header: transparent on home until scrolled */
     var hd = document.querySelector('.header');
     if (hd && document.body.classList.contains('home')) {

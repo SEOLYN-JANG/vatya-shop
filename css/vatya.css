@@ -107,42 +107,6 @@ body.home .hero::before{content:"";position:absolute;left:0;right:0;top:0;height
 .video .sound{position:absolute;right:24px;bottom:24px;height:36px;padding:0 14px;border-radius:999px;border:1.5px solid rgba(255,255,255,.8);background:rgba(0,0,0,.3);color:#fff;font-size:12px;font-weight:800;letter-spacing:.12em;cursor:pointer}
 .video .cap{position:absolute;left:24px;bottom:24px;color:#fff;font-size:13px;letter-spacing:.14em;font-weight:700;opacity:.85}
 
-/* ===== full menu (blue dot): stripe wipe (#pattern, 18 bars) → blue full-screen menu + search (ref. vatya.co.kr toggleBtn) ===== */
-.iconbtn.dot{width:40px;height:40px}
-.iconbtn.dot i{display:block;width:26px;height:26px;border-radius:50%;background:var(--blue);transition:background .2s}
-#pattern{position:fixed;inset:0;z-index:190;pointer-events:none;opacity:0;transition:opacity .2s}
-#pattern i{position:absolute;left:0;width:100%;height:0;display:block;background:var(--blue)}
-#pattern i::before,#pattern i::after{content:"";position:absolute;top:0;width:50%;height:0;background:var(--blue);display:block}
-#pattern i::before{left:0}#pattern i::after{left:50%}
-#pattern i:nth-child(odd)::after{display:none}#pattern i:nth-child(even)::before{display:none}
-#pattern i:nth-child(1){top:0}#pattern i:nth-child(2){top:calc(100%/18)}#pattern i:nth-child(3){top:calc(100%/18*2)}#pattern i:nth-child(4){top:calc(100%/18*3)}#pattern i:nth-child(5){top:calc(100%/18*4)}#pattern i:nth-child(6){top:calc(100%/18*5)}#pattern i:nth-child(7){top:calc(100%/18*6)}#pattern i:nth-child(8){top:calc(100%/18*7)}#pattern i:nth-child(9){top:calc(100%/18*8)}#pattern i:nth-child(10){top:calc(100%/18*9)}#pattern i:nth-child(11){top:calc(100%/18*10)}#pattern i:nth-child(12){top:calc(100%/18*11)}#pattern i:nth-child(13){top:calc(100%/18*12)}#pattern i:nth-child(14){top:calc(100%/18*13)}#pattern i:nth-child(15){top:calc(100%/18*14)}#pattern i:nth-child(16){top:calc(100%/18*15)}#pattern i:nth-child(17){top:calc(100%/18*16)}#pattern i:nth-child(18){top:calc(100%/18*17)}
-@keyframes patternHorizon{0%{height:0}100%{height:calc(100vh/18 + 2px)}}
-body.menu-open{overflow:hidden}
-body.menu-open #pattern{opacity:1;pointer-events:all}
-body.menu-open #pattern i::before,body.menu-open #pattern i::after{animation:patternHorizon .2s ease-in-out 0s 1 forwards}
-body.menu-open #pattern i{animation:patternHorizon .2s ease-in-out .4s 1 forwards}
-body.menu-open .header{opacity:0;pointer-events:none}
-#fullmenu{position:fixed;inset:0;z-index:200;color:#fff;opacity:0;pointer-events:none;transition:opacity .2s;overflow:auto;background:var(--blue)}
-body.menu-open #fullmenu{opacity:1;pointer-events:all;transition-delay:1s}
-#fullmenu .top{display:flex;align-items:center;justify-content:space-between;height:var(--header-h);padding:0 28px}
-#fullmenu .top .logo svg{height:30px;width:auto;display:block;color:#fff}
-#fullmenu .top .iconbtn.dot i{background:#fff}
-#fullmenu .body{padding:24px 28px 40px;display:grid;grid-template-columns:repeat(3,1fr);gap:40px 32px;max-width:1240px}
-#fullmenu h3{font-size:22px;font-weight:900;color:#ffd166;margin-bottom:10px;letter-spacing:-.01em}
-#fullmenu .body a{display:block;font-size:26px;font-weight:800;line-height:1.35;letter-spacing:-.02em;color:#fff}
-#fullmenu .body a:hover{opacity:.6}
-#fullmenu .bottom{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:end;padding:24px 28px 40px;max-width:1240px}
-#fullmenu .search{position:relative}
-#fullmenu .search input{width:100%;background:none;border:0;border-bottom:8px solid #fff;color:#fff;font-size:56px;font-weight:900;font-family:inherit;padding:0 60px 6px 0;outline:0;letter-spacing:-.02em}
-#fullmenu .search input::placeholder{color:rgba(255,255,255,.7)}
-#fullmenu .search button{position:absolute;right:0;top:50%;transform:translateY(-50%);background:none;border:0;color:#fff;cursor:pointer}
-#fullmenu .search button .ico{width:40px;height:40px;stroke-width:2.2}
-#fullmenu .links{display:grid;grid-template-columns:repeat(3,auto);gap:6px 32px;justify-content:end;font-size:15px;font-weight:700}
-#fullmenu .links a{color:#fff}
-/* ?menu=1&shot=1 → open instantly for captures */
-body.noanim #pattern i,body.noanim #pattern i::before,body.noanim #pattern i::after{animation-duration:0s;animation-delay:0s}
-body.noanim #fullmenu,body.noanim #pattern{transition:none}
-
 /* category chips */
 .cats{border-bottom:1px solid var(--line);background:#fff}
 .cats ul{display:flex;gap:6px;height:60px;align-items:center;font-size:15px;font-weight:600;color:var(--ink-2);overflow-x:auto;scrollbar-width:none}
@@ -358,17 +322,6 @@ body.noanim #fullmenu,body.noanim #pattern{transition:none}
   .detail-content .pts{grid-template-columns:1fr}
   .detail-content .open h3{font-size:26px}
   .header .inner{padding:0 16px}
-  .iconbtn.dot{width:34px}
-  .iconbtn.dot i{width:22px;height:22px}
-  #fullmenu .top{padding:0 16px}
-  #fullmenu .top .logo svg{height:24px}
-  #fullmenu .body{grid-template-columns:1fr 1fr;gap:24px 16px;padding:16px 16px 24px}
-  #fullmenu h3{font-size:16px;margin-bottom:6px}
-  #fullmenu .body a{font-size:20px}
-  #fullmenu .bottom{grid-template-columns:1fr;gap:20px;padding:8px 16px 40px}
-  #fullmenu .search input{font-size:34px;border-bottom-width:5px;padding-right:44px}
-  #fullmenu .search button .ico{width:28px;height:28px}
-  #fullmenu .links{justify-content:start;font-size:14px;gap:4px 20px}
   .header .right{margin-left:0}
   body.home .hero::before{height:110px}
   .video{padding:16px 0 4px}
