@@ -144,7 +144,7 @@ body.home .hero::before{content:"";position:absolute;left:0;right:0;top:0;height
 /* best sellers: 2-column full-bleed squares (ref. ilkwdesign), name left / price right only */
 .best-full{padding:56px 0 0}
 .best-full .head{width:min(var(--container),100% - 48px);margin:0 auto 24px;display:flex;align-items:flex-end;justify-content:space-between}
-.best-full ul{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:2px;background:#fff}
+.best-full ul{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:2px;background:#fff}
 .best-full .prd .img{aspect-ratio:1/1;border-radius:0;background:var(--grey)}
 .best-full .prd:hover .img img{transform:none}
 .best-full .prd a{display:block}
@@ -153,9 +153,10 @@ body.home .hero::before{content:"";position:absolute;left:0;right:0;top:0;height
 .best-full .prd .cap .price{margin:0;font-size:16px;font-weight:600;color:var(--ink);white-space:nowrap}
 /* designers: one designer per slide (auto roll), stripe band in the middle */
 .designers{position:relative;background:#fff;padding:56px 0 0;overflow:hidden}
-.designers .track{display:grid;grid-template-columns:1fr 160px 1fr;min-height:620px}
-.designers .slide{display:contents}
-.designers .slide:not(.on) > *{display:none}
+/* slides stack on top of each other and cross-fade (owner: "뚝뚝 끊김" → 스르륵) */
+.designers .track{position:relative;min-height:620px}
+.designers .slide{display:grid;grid-template-columns:1fr 160px 1fr;position:absolute;inset:0;opacity:0;transform:translateX(28px);transition:opacity .9s ease,transform .9s ease;pointer-events:none}
+.designers .slide.on{position:relative;opacity:1;transform:none;pointer-events:auto}
 .designers .names{padding:64px 64px 64px 72px;display:flex;flex-direction:column;justify-content:center;background:#fff}
 .designers .names .eyebrow{margin-bottom:18px}
 .designers .names .nm{font-size:56px;font-weight:800;color:var(--blue);letter-spacing:-.03em;line-height:1.05}
@@ -323,11 +324,12 @@ body.home .hero::before{content:"";position:absolute;left:0;right:0;top:0;height
   .video .box{width:min(1160px,100% - 32px)}
   .best-full{padding:36px 0 0}
   .best-full .head{margin-bottom:14px}
-  .best-full ul{grid-template-columns:1fr}
+  .best-full ul{grid-template-columns:repeat(2,minmax(0,1fr))}
   .best-full .prd .cap{padding:10px 16px 20px;font-size:14px}
   .best-full .prd .cap strong,.best-full .prd .cap .price{font-size:14px}
   .designers{padding:36px 0 0}
-  .designers .track{grid-template-columns:1fr;min-height:0}
+  .designers .track{min-height:0}
+  .designers .slide{grid-template-columns:1fr}
   .designers .names{padding:8px 16px 96px;order:2}
   .designers .names .nm{font-size:36px}
   .designers .names p{font-size:15px}
