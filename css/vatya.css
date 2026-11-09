@@ -352,3 +352,141 @@ body.home .hero::before{content:"";position:absolute;left:0;right:0;top:0;height
   .footer .cols>div:first-child{grid-column:1/-1}
   .legal .inner{justify-content:center;text-align:center}
 }
+
+
+/* =====================================================================
+   3rd round (2026-11-09, owner): every section fills the viewport, content starts at the logo x (28px),
+   header stays transparent on home, best = 2-up slider, designers = blue panel + product + button / photo,
+   search icon → stripe wipe + blue full menu, list = edge-to-edge squares. Overrides the rules above.
+   ===================================================================== */
+:root{--vh:100vh;--gx:28px}
+.container{width:100%;margin:0;padding-left:var(--gx);padding-right:var(--gx)}
+.hero .nav .inner2{width:100%;padding:0 var(--gx)}
+body.home .header.scrolled{background:transparent;box-shadow:none}
+body.home .hero::before{display:none}
+.hero{height:var(--vh)}
+.video{padding:0}
+.video .box{width:100%}
+.video video{height:calc(var(--vh)*.8)}
+/* best: one full screen, head inside, 2 cards per view (1 on mobile), caption over the photo */
+.best-full{height:var(--vh);padding:0;display:flex;flex-direction:column;overflow:hidden}
+.best-full .head{width:100%;margin:0;padding:40px var(--gx) 24px;flex:0 0 auto}
+.best-full .viewport{flex:1;min-height:0}
+.best-full ul{height:100%}
+.best-full .prd{flex:0 0 calc((100% - 2px) / 2);position:relative;height:100%;background:var(--grey)}
+.best-full .prd a{display:block;height:100%}
+.best-full .prd .img{aspect-ratio:auto;height:100%;background:var(--grey)}
+.best-full .prd .img img{height:100%}
+.best-full .prd .cap{position:absolute;left:0;right:0;bottom:0;flex-direction:row;justify-content:space-between;align-items:baseline;text-align:left;gap:16px;padding:22px 24px;color:#fff;background:linear-gradient(transparent,rgba(0,0,0,.45))}
+.best-full .prd .cap strong{font-size:20px;font-weight:700;color:#fff}
+.best-full .prd .cap .price{font-size:20px;font-weight:700;color:#fff}
+.best-full .prd .tag{display:block}
+/* designers: blue panel (text + product card + button) | stripe | photo, one full screen */
+.designers{padding:0;background:var(--blue)}
+.designers .track{min-height:var(--vh)}
+.designers .names{background:var(--blue);color:#fff;padding:72px var(--gx) 110px;justify-content:space-between}
+.designers .names .eyebrow{color:rgba(255,255,255,.7)}
+.designers .names .nm{color:#fff;font-size:72px}
+.designers .names .en{color:rgba(255,255,255,.7);margin-bottom:22px}
+.designers .names p{color:rgba(255,255,255,.9);font-size:18px;max-width:520px}
+.designers .names .prod{border-top:0;margin-top:40px;padding-top:0;gap:28px;align-items:flex-end}
+.designers .names .prod img{width:400px;height:400px;background:#fff;object-fit:contain;padding:28px}
+.designers .names .prod strong{color:#fff;font-size:22px;margin-bottom:6px}
+.designers .names .prod span{display:block;color:#fff;font-size:20px;margin-bottom:18px}
+.designers .names .prod .btn{background:#fff;color:var(--blue);height:48px;padding:0 24px;font-size:15px}
+.designers .pic{min-height:var(--vh)}
+.designers .ctl{left:var(--gx);bottom:44px;color:#fff}
+.designers .ctl .arrows button{border-color:rgba(255,255,255,.8)}
+/* journal: edge to edge, 70% of the screen */
+.promo{padding:0}
+.promo .two{gap:2px}
+.promo .ban{aspect-ratio:auto;height:calc(var(--vh)*.7)}
+.promo .ban .txt{left:var(--gx);bottom:40px}
+.promo .ban strong{font-size:40px}
+.footer2{margin-top:0;padding-left:var(--gx);padding-right:var(--gx)}
+.footer2 .cols{max-width:none}
+/* list: edge-to-edge squares, photo fills the cell, name left / price right */
+.page-head{padding:40px 0 16px}
+.page-head h2{font-size:40px}
+.list-bar{margin-bottom:0;border-bottom:0}
+.list-wrap{margin:0 calc(var(--gx)*-1)}
+.list-grid{gap:2px;background:#fff}
+.list-grid .prd a{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:0 16px;padding-bottom:36px}
+.list-grid .prd .img{flex:0 0 100%;border-radius:0;background:var(--grey)}
+.list-grid .prd .tag,.list-grid .prd .sum{display:none}
+.list-grid .prd strong{flex:1;min-width:0;font-size:18px;font-weight:700;margin:16px 0 0 20px}
+.list-grid .prd .price{font-size:18px;font-weight:700;color:var(--ink);margin:16px 20px 0 0}
+.list-grid .prd .price del,.list-grid .prd .price i{display:none}
+.cats{border-bottom:0}
+/* full menu: search icon → stripe wipe (#pattern, 18 bars) → blue menu + search (ref. vatya.co.kr toggleBtn) */
+#pattern{position:fixed;inset:0;z-index:190;pointer-events:none;opacity:0;transition:opacity .2s}
+#pattern i{position:absolute;left:0;width:100%;height:0;display:block;background:var(--blue)}
+#pattern i::before,#pattern i::after{content:"";position:absolute;top:0;width:50%;height:0;background:var(--blue);display:block}
+#pattern i::before{left:0}#pattern i::after{left:50%}
+#pattern i:nth-child(odd)::after{display:none}#pattern i:nth-child(even)::before{display:none}
+#pattern i:nth-child(1){top:0}#pattern i:nth-child(2){top:calc(100%/18)}#pattern i:nth-child(3){top:calc(100%/18*2)}#pattern i:nth-child(4){top:calc(100%/18*3)}#pattern i:nth-child(5){top:calc(100%/18*4)}#pattern i:nth-child(6){top:calc(100%/18*5)}#pattern i:nth-child(7){top:calc(100%/18*6)}#pattern i:nth-child(8){top:calc(100%/18*7)}#pattern i:nth-child(9){top:calc(100%/18*8)}#pattern i:nth-child(10){top:calc(100%/18*9)}#pattern i:nth-child(11){top:calc(100%/18*10)}#pattern i:nth-child(12){top:calc(100%/18*11)}#pattern i:nth-child(13){top:calc(100%/18*12)}#pattern i:nth-child(14){top:calc(100%/18*13)}#pattern i:nth-child(15){top:calc(100%/18*14)}#pattern i:nth-child(16){top:calc(100%/18*15)}#pattern i:nth-child(17){top:calc(100%/18*16)}#pattern i:nth-child(18){top:calc(100%/18*17)}
+@keyframes patternHorizon{0%{height:0}100%{height:calc(100vh/18 + 2px)}}
+body.menu-open{overflow:hidden}
+body.menu-open #pattern{opacity:1;pointer-events:all}
+body.menu-open #pattern i::before,body.menu-open #pattern i::after{animation:patternHorizon .2s ease-in-out 0s 1 forwards}
+body.menu-open #pattern i{animation:patternHorizon .2s ease-in-out .4s 1 forwards}
+body.menu-open .header{opacity:0;pointer-events:none}
+#fullmenu{position:fixed;inset:0;z-index:200;color:#fff;opacity:0;pointer-events:none;transition:opacity .2s;overflow:auto;background:var(--blue)}
+body.menu-open #fullmenu{opacity:1;pointer-events:all;transition-delay:1s}
+#fullmenu .top{display:flex;align-items:center;justify-content:space-between;height:var(--header-h);padding:0 var(--gx)}
+#fullmenu .top .logo svg{height:30px;width:auto;display:block;color:#fff}
+#fullmenu .top .close{width:40px;height:40px;display:grid;place-items:center;background:none;border:0;color:#fff;cursor:pointer}
+#fullmenu .body{padding:24px var(--gx) 40px;display:grid;grid-template-columns:repeat(3,1fr);gap:40px 32px;max-width:1240px}
+#fullmenu h3{font-size:22px;font-weight:900;color:#ffd166;margin-bottom:10px}
+#fullmenu .body a{display:block;font-size:26px;font-weight:800;line-height:1.35;letter-spacing:-.02em;color:#fff}
+#fullmenu .body a:hover{opacity:.6}
+#fullmenu .bottom{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:end;padding:24px var(--gx) 40px;max-width:1240px}
+#fullmenu .search{position:relative}
+#fullmenu .search input{width:100%;background:none;border:0;border-bottom:8px solid #fff;color:#fff;font-size:56px;font-weight:900;font-family:inherit;padding:0 60px 6px 0;outline:0;letter-spacing:-.02em}
+#fullmenu .search input::placeholder{color:rgba(255,255,255,.7)}
+#fullmenu .search button{position:absolute;right:0;top:50%;transform:translateY(-50%);background:none;border:0;color:#fff;cursor:pointer}
+#fullmenu .search button .ico{width:40px;height:40px;stroke-width:2.2}
+#fullmenu .links{display:grid;grid-template-columns:repeat(3,auto);gap:6px 32px;justify-content:end;font-size:15px;font-weight:700}
+#fullmenu .links a{color:#fff}
+body.noanim #pattern i,body.noanim #pattern i::before,body.noanim #pattern i::after{animation-duration:0s;animation-delay:0s}
+body.noanim #fullmenu,body.noanim #pattern{transition:none}
+@media(max-width:899px){
+  :root{--gx:16px}
+  .hero{height:calc(var(--vh)*.7)}
+  .video video{height:calc(var(--vh)*.5)}
+  .best-full{height:auto}
+  .best-full .head{padding:28px var(--gx) 14px}
+  .best-full .viewport{flex:none}
+  .best-full ul{height:auto}
+  .best-full .prd{flex-basis:100%;height:auto}
+  .best-full .prd .img{aspect-ratio:1/1;height:auto}
+  .best-full .prd .cap{padding:14px 16px}
+  .best-full .prd .cap strong,.best-full .prd .cap .price{font-size:16px}
+  .designers .track{min-height:0}
+  .designers .names{padding:28px var(--gx) 90px;order:1}
+  .designers .names .nm{font-size:40px}
+  .designers .names .prod{margin-top:24px;gap:16px;flex-direction:column;align-items:flex-start}
+  .designers .names .prod img{width:100%;height:auto;aspect-ratio:1/1;padding:16px}
+  .designers .band{order:2;height:48px;background:#fff var(--stripe-v) left top/48px 64px repeat-x}
+  .designers .pic{order:0;min-height:0;aspect-ratio:4/3}
+  .designers .ctl{left:var(--gx);bottom:28px}
+  .promo .two{grid-template-columns:1fr;gap:2px}
+  .promo .ban{height:calc(var(--vh)*.4)}
+  .promo .ban strong{font-size:24px}
+  .page-head h2{font-size:28px}
+  .list-grid .prd strong,.list-grid .prd .price{font-size:14px;margin-top:10px}
+  .list-grid .prd strong{margin-left:12px}
+  .list-grid .prd .price{margin-right:12px}
+  .list-grid .prd a{padding-bottom:22px}
+  #fullmenu .top .logo svg{height:24px}
+  #fullmenu .body{grid-template-columns:1fr 1fr;gap:24px 16px;padding:16px var(--gx) 24px}
+  #fullmenu h3{font-size:16px;margin-bottom:6px}
+  #fullmenu .body a{font-size:20px}
+  #fullmenu .bottom{grid-template-columns:1fr;gap:20px;padding:8px var(--gx) 40px}
+  #fullmenu .search input{font-size:34px;border-bottom-width:5px;padding-right:44px}
+  #fullmenu .search button .ico{width:28px;height:28px}
+  #fullmenu .links{justify-content:start;font-size:14px;gap:4px 20px}
+}
+/* fixes after capture check */
+.list-grid .prd strong{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+@media(max-width:899px){.designers .ctl{bottom:76px}}

@@ -8,9 +8,10 @@
 <meta name="description" content="2017년 식기건조대로 시작한 스테인리스 주방 브랜드 밧드야. 건조대, 설거지통, 음식물쓰레기통, 테이블웨어.">
 <link rel="icon" href="img/logo.svg">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
-<link rel="stylesheet" href="css/vatya.css?v=202611051746">
-<script src="js/products.js?v=202611051746"></script>
-<script src="js/vatya.js?v=202611051746" defer></script>
+<link rel="stylesheet" href="css/vatya.css?v=202611091716">
+<script>(function(){if(/[?&]shot=1/.test(location.search))document.documentElement.style.setProperty('--vh','900px');})();</script>
+<script src="js/products.js?v=202611091716"></script>
+<script src="js/vatya.js?v=202611091716" defer></script>
 </head>
 <body class="home">
 <div id="wrap">
@@ -37,13 +38,26 @@
     <li><a href="#journal">저널</a></li><li><a href="#">브랜드</a></li>
   </ul></nav>
   <div class="right">
-    <button type="button" class="iconbtn" data-toggle-search aria-label="검색"><svg class="ico" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button>
+    <button type="button" class="iconbtn" data-open-menu aria-label="검색·전체 메뉴"><svg class="ico" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button>
     <a href="#" class="iconbtn" aria-label="로그인"><svg class="ico" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-7 8-7s8 3 8 7"/></svg></a>
     <a href="#" class="iconbtn" aria-label="장바구니"><svg class="ico" viewBox="0 0 24 24"><path d="M6 7h12l-1 12H7L6 7z"/><path d="M9 7V5a3 3 0 0 1 6 0v2"/></svg><span class="cart-count">2</span></a>
   </div>
+</div></header>
+
+<!-- search icon → stripe wipe + blue full menu (categories mirror the header) -->
+<div id="pattern" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+<div id="fullmenu">
+  <div class="top"><a class="logo" href="index.html" aria-label="VATYA 홈"><svg viewBox="0 0 200 45.6" fill="currentColor"><polygon points="32.4,0 23.7,30.1 15,0 0,0 15.6,45.6 31.8,45.6 47.4,0 "/><path d="M64.6,14.1L68.1,27H61L64.6,14.1z M56.5,0L40.8,45.6h15l2-7.2h13.5l2,7.2h15L72.7,0H56.5z"/><polygon points="147.1,0 137.8,19.4 128.5,0 82.6,0 82.6,12 96.1,12 96.1,45.6 109.9,45.6 109.9,12 120.5,12 130.9,31.5 130.9,45.6 144.7,45.6 144.7,31.4 161.6,0 "/><path d="M176.3,14.1l3.5,12.9h-7.1L176.3,14.1z M168.2,0l-15.6,45.6h15l2-7.2H183l2,7.2h15L184.4,0H168.2z"/></svg></a><button type="button" class="close" data-close-menu aria-label="닫기"><svg class="ico" viewBox="0 0 24 24" style="width:28px;height:28px"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>
+  <div class="body">
+    <div><h3>제품</h3><a href="list.html?cate=all">전체</a><a href="list.html?cate=standard">스탠다드 시리즈</a><a href="list.html?cate=rack">건조대 제품</a><a href="list.html?cate=kitchen">주방 제품</a><a href="list.html?cate=table">테이블 제품</a><a href="list.html?cate=designer">디자이너 제품</a><a href="list.html?cate=set">세트 상품</a><a href="list.html?cate=bgrade">B급 제품</a></div>
+    <div><h3>저널</h3><a href="index.html#journal">전체</a><a href="index.html#journal">프로젝트</a><a href="index.html#journal">소식</a><a href="index.html#journal">이벤트</a></div>
+    <div><h3>디자이너</h3><a href="list.html?cate=designer">전체</a><h3 style="margin-top:28px">브랜드 소개</h3><a href="#">밧드야 이야기</a></div>
+  </div>
+  <div class="bottom">
+    <form class="search" action="list.html"><input type="text" name="q" placeholder="검색" autocomplete="off"><button type="submit" aria-label="검색"><svg class="ico" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button></form>
+    <div class="links"><a href="#">로그인</a><a href="#">상품 후기</a><a href="#">고객센터</a><a href="#">장바구니</a><a href="#">1:1 문의</a><a href="#">KR / EN</a></div>
+  </div>
 </div>
-<div class="search-layer"><div class="container"><form action="list.html"><input type="search" name="q" placeholder="찾으시는 제품을 입력하세요"><button type="submit" class="btn">검색</button></form></div></div>
-</header>
 
 <div class="drawer"><div class="dim" data-close-drawer></div><div class="panel">
   <button type="button" class="iconbtn close" data-close-drawer aria-label="닫기"><svg class="ico" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
@@ -53,7 +67,7 @@
   <a href="#journal">저널</a><a href="#">브랜드 소개</a><a href="#">1:1 문의</a>
 </div></div>
 
-<!-- hero: full-bleed product photos only, header sits on top (transparent until scrolled). swap img src to change slides -->
+<!-- hero: full-screen product photos, header text sits on top. swap img src to change slides -->
 <section class="hero">
   <div class="slides">
     <a class="slide on" href="detail.html?p=bin"><img src="img/hero_bin.jpg" alt="밧드야 음식물쓰레기통"></a>
@@ -63,7 +77,7 @@
   <div class="nav"><div class="inner2"><div class="dots"><i class="on"></i><i></i><i></i></div><div class="arrows"><button type="button" class="prev" aria-label="이전"><svg class="ico" viewBox="0 0 24 24"><path d="m15 5-7 7 7 7"/></svg></button><button type="button" class="next" aria-label="다음"><svg class="ico" viewBox="0 0 24 24"><path d="m9 5 7 7-7 7"/></svg></button></div></div></div>
 </section>
 
-<!-- video: muted loop. put the brand film at img/main.mp4 (H.264, 1920x1080) and a still at img/main_poster.jpg -->
+<!-- video: edge to edge, muted loop. put the brand film at img/main.mp4 (H.264, 1920x1080) -->
 <section class="video"><div class="box">
   <video muted loop playsinline preload="metadata" poster="img/hero_rack.jpg"><source src="img/main.mp4" type="video/mp4"></video>
   <button type="button" class="play" aria-label="영상 재생"><svg class="ico" viewBox="0 0 24 24"><path d="M7 4v16l13-8z"/></svg></button>
@@ -71,44 +85,50 @@
   <button type="button" class="sound" aria-label="소리 켜기">SOUND ON</button>
 </div></section>
 
-<!-- best sellers: ids listed in data-ids (edit here), rendered from js/products.js -->
+<!-- best sellers: one screen, 2 per view slider. ids in data-ids (edit here), rendered from js/products.js -->
 <section class="best-full">
   <div class="head"><div><div class="eyebrow">Best Sellers</div><h2 class="sec">베스트 상품</h2></div><div class="arrows"><button type="button" class="bprev" aria-label="이전"><svg class="ico" viewBox="0 0 24 24"><path d="m15 5-7 7 7 7"/></svg></button><button type="button" class="bnext" aria-label="다음"><svg class="ico" viewBox="0 0 24 24"><path d="m9 5 7 7-7 7"/></svg></button></div></div>
   <div class="viewport"><ul data-list="best-full" data-ids="bin,rack2,bowl,mix3,recycle,cyl"></ul></div>
 </section>
 
-<!-- designers: one .slide per designer (name / english / description / product). photos: replace img in .pic -->
+<!-- designers: one .slide per designer. left = text + product card + button, right = designer photo (.pic img) -->
 <section class="designers">
   <div class="track">
     <div class="slide on">
       <div class="names">
-        <div class="eyebrow">Designer 01</div>
-        <div class="nm">심승연</div>
-        <div class="en">Seungyeon Shim · Product Designer</div>
-        <p>칫솔과 치약이 서로 닿지 않도록 두 개의 원통을 어긋나게 겹친 칫솔꽂이. 스테인리스 한 장을 말아 이음새 없이 만들어 물때가 끼지 않고 세척이 쉽습니다.</p>
-        <a class="prod" href="detail.html?p=tooth"><img src="img/prd_tooth.jpg" alt=""><div><strong>밧드야 칫솔꽂이</strong><span>45,000원</span></div></a>
+        <div>
+          <div class="eyebrow">Designer 01</div>
+          <div class="nm">심승연</div>
+          <div class="en">Seungyeon Shim · Product Designer</div>
+          <p>칫솔과 치약이 서로 닿지 않도록 두 개의 원통을 어긋나게 겹친 칫솔꽂이. 스테인리스 한 장을 말아 이음새 없이 만들어 물때가 끼지 않고 세척이 쉽습니다.</p>
+        </div>
+        <div class="prod"><img src="img/prd_tooth.jpg" alt=""><div><strong>밧드야 칫솔꽂이</strong><span>45,000원</span><a class="btn" href="detail.html?p=tooth">제품 보러가기</a></div></div>
       </div>
       <div class="band"></div>
       <div class="pic"><img src="img/sc_sink.jpg" alt=""><div class="ph">디자이너 이미지 자리 (사진 수령 후 교체)</div></div>
     </div>
     <div class="slide">
       <div class="names">
-        <div class="eyebrow">Designer 02</div>
-        <div class="nm">WELDUS</div>
-        <div class="en">Hongik University WELDUS Team</div>
-        <p>홍익대학교 WELDUS 팀이 디자인한 분리수거함. 와이어 프레임으로 비닐봉투를 걸어 쓰고, 다 쓰면 그대로 들어 올려 비울 수 있습니다.</p>
-        <a class="prod" href="detail.html?p=recycle"><img src="img/prd_recycle.jpg" alt=""><div><strong>밧드야 분리수거함</strong><span>50,000원</span></div></a>
+        <div>
+          <div class="eyebrow">Designer 02</div>
+          <div class="nm">WELDUS</div>
+          <div class="en">Hongik University WELDUS Team</div>
+          <p>홍익대학교 WELDUS 팀이 디자인한 분리수거함. 와이어 프레임으로 비닐봉투를 걸어 쓰고, 다 쓰면 그대로 들어 올려 비울 수 있습니다.</p>
+        </div>
+        <div class="prod"><img src="img/prd_recycle.jpg" alt=""><div><strong>밧드야 분리수거함</strong><span>50,000원</span><a class="btn" href="detail.html?p=recycle">제품 보러가기</a></div></div>
       </div>
       <div class="band"></div>
       <div class="pic"><img src="img/sc_steel.jpg" alt=""><div class="ph">디자이너 이미지 자리</div></div>
     </div>
     <div class="slide">
       <div class="names">
-        <div class="eyebrow">Designer 03</div>
-        <div class="nm">디자이너 이름</div>
-        <div class="en">자리표시 · 협업 디자이너</div>
-        <p>디자이너 소개와 제품 설명이 들어갈 자리입니다. 디자이너 1명당 1장으로 자동 롤링됩니다.</p>
-        <a class="prod" href="detail.html?p=wine"><img src="img/prd_wine.jpg" alt=""><div><strong>삼각대 와인잔 시리즈</strong><span>50,000원</span></div></a>
+        <div>
+          <div class="eyebrow">Designer 03</div>
+          <div class="nm">디자이너 이름</div>
+          <div class="en">자리표시 · 협업 디자이너</div>
+          <p>디자이너 소개와 제품 설명이 들어갈 자리입니다.</p>
+        </div>
+        <div class="prod"><img src="img/prd_wine.jpg" alt=""><div><strong>삼각대 와인잔 시리즈</strong><span>50,000원</span><a class="btn" href="detail.html?p=wine">제품 보러가기</a></div></div>
       </div>
       <div class="band"></div>
       <div class="pic"><img src="img/sc_lid.jpg" alt=""><div class="ph">디자이너 이미지 자리</div></div>
@@ -117,8 +137,8 @@
   <div class="ctl"><span class="cnt">01 / 03</span><div class="arrows"><button type="button" class="dprev" aria-label="이전"><svg class="ico" viewBox="0 0 24 24"><path d="m15 5-7 7 7 7"/></svg></button><button type="button" class="dnext" aria-label="다음"><svg class="ico" viewBox="0 0 24 24"><path d="m9 5 7 7-7 7"/></svg></button></div></div>
 </section>
 
-<!-- journal banners -->
-<section class="promo" id="journal"><div class="container two">
+<!-- journal banners: edge to edge -->
+<section class="promo" id="journal"><div class="two">
   <a class="ban" href="#journal"><img src="img/hero_rack.jpg" alt=""><div class="txt"><em>JOURNAL · DISH RACK</em><strong>싱크대 위를 정리하는<br>식기건조대</strong><span>저널 보기</span></div></a>
   <a class="ban" href="#journal"><img src="img/hero_bowl.jpg" alt=""><div class="txt"><em>JOURNAL · WASHING-UP BOWL</em><strong>통 스테인리스<br>설거지통</strong><span>저널 보기</span></div></a>
 </div></section>

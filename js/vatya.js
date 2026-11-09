@@ -78,7 +78,17 @@
       var id = a.getAttribute('data-cate');
       if (cur !== null && id === cur) a.classList.add('on');
     });
-    /* header: transparent on home until scrolled */
+    /* full menu: search icon → stripe wipe → blue menu + search */
+    var fm = document.getElementById('fullmenu');
+    if (fm) {
+      function openMenu() { document.body.classList.add('menu-open'); setTimeout(function () { var inp = fm.querySelector('input'); if (inp && window.innerWidth >= 900) inp.focus(); }, 1100); }
+      function closeMenu() { document.body.classList.remove('menu-open'); }
+      document.querySelectorAll('[data-open-menu]').forEach(function (b) { b.addEventListener('click', openMenu); });
+      document.querySelectorAll('[data-close-menu]').forEach(function (b) { b.addEventListener('click', closeMenu); });
+      document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeMenu(); });
+      if (/[?&]menu=1/.test(location.search)) { if (/[?&]shot=1/.test(location.search)) document.body.classList.add('noanim'); document.body.classList.add('menu-open'); }
+    }
+    /* header: transparent on home (kept transparent after scroll since 2026-11-09; .scrolled still toggled for future use) */
     var hd = document.querySelector('.header');
     if (hd && document.body.classList.contains('home')) {
       function sc() { hd.classList.toggle('scrolled', window.scrollY > 40); }
@@ -92,11 +102,12 @@
       bf.innerHTML = ids.map(function (id) {
         var p = byId(id.trim()); if (!p) return '';
         var price = won(p.sale ? Math.round(p.price * (100 - p.sale) / 100) : p.price);
-        return '<li class="prd"><a href="detail.html?p=' + p.id + '"><div class="img"><img src="' + p.img + '" alt="' + p.name + '"></div><div class="cap"><strong>' + p.name + '</strong><span class="price">' + price + '</span></div></a></li>';
+        var tag = p.tag ? '<span class="tag' + (p.tag === 'NEW' ? ' new' : '') + '">' + p.tag + '</span>' : '';
+        return '<li class="prd"><a href="detail.html?p=' + p.id + '"><div class="img">' + tag + '<img src="' + p.img + '" alt="' + p.name + '"></div><div class="cap"><strong>' + p.name + '</strong><span class="price">' + price + '</span></div></a></li>';
       }).join('');
-      /* slider: step one item, 4 visible on pc / 2 on mobile, swipe + arrows + 4s auto */
+      /* slider: step one item, 2 visible on pc / 1 on mobile (owner pick 2026-11-09), swipe + arrows + 4s auto */
       var bsec = bf.closest('.best-full'), bi = 0, btm;
-      function bper() { return window.innerWidth < 900 ? 2 : 4; }
+      function bper() { return window.innerWidth < 900 ? 1 : 2; }
       function bmax() { return Math.max(0, bf.children.length - bper()); }
       function bgo(n) { bi = Math.max(0, Math.min(bmax(), n)); var li = bf.children[0]; if (!li) return; var step = li.getBoundingClientRect().width + 2; bf.style.transform = 'translateX(' + (-bi * step) + 'px)'; }
       function bauto() { clearInterval(btm); if (!/[?&]shot=1/.test(location.search)) btm = setInterval(function () { bgo(bi >= bmax() ? 0 : bi + 1); }, 4000); }
