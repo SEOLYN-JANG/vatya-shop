@@ -121,6 +121,29 @@
       window.addEventListener('resize', function () { jgo(ji); });
       jgo(0); jauto();
     }
+    /* main journal A안: feature photo + numbered list, hover/focus switches, auto-advance 5s (paused while hovering) */
+    var jf = document.querySelector('[data-journal="feat"]'), jx = document.querySelector('[data-journal="index"]');
+    if (jf && jx && J.length) {
+      jf.innerHTML = J.map(function (p, i) {
+        var f = p.feat || { img: 'cover' };
+        var st = 'object-fit:' + (f.fit || 'cover') + ';' + (f.pos ? 'object-position:' + f.pos + ';' : '');
+        return '<a href="journal_view.html?id=' + p.id + '" class="' + (i ? '' : 'on') + '"' + (f.bg ? ' style="background:' + f.bg + '"' : '') + '><img src="' + jimg(p, f.img) + '" alt="' + p.title + '" style="' + st + '"' + (i ? ' loading="lazy"' : '') + '><span class="tag">' + p.label + '</span></a>';
+      }).join('');
+      jx.innerHTML = J.map(function (p, i) {
+        return '<li class="' + (i ? '' : 'on') + '"><a href="journal_view.html?id=' + p.id + '"><span class="n">' + ('0' + (i + 1)).slice(-2) + '</span><div><em>' + p.label + '</em><strong>' + p.title + '</strong><p>' + p.summary + '</p></div></a></li>';
+      }).join('');
+      var fa = jf.children, lr = jx.children, fi = 0, ftm, hov = false;
+      function fgo(n) { fi = (n + lr.length) % lr.length; for (var q = 0; q < lr.length; q++) { lr[q].classList.toggle('on', q === fi); fa[q].classList.toggle('on', q === fi); } }
+      function fauto() { clearInterval(ftm); if (/[?&]shot=1/.test(location.search)) return; ftm = setInterval(function () { if (!hov) fgo(fi + 1); }, 5000); }
+      Array.prototype.forEach.call(lr, function (li, q) {
+        li.addEventListener('mouseenter', function () { fgo(q); });
+        li.querySelector('a').addEventListener('focus', function () { fgo(q); });
+      });
+      var sec = jf.closest('.jr-a');
+      sec.addEventListener('mouseenter', function () { hov = true; });
+      sec.addEventListener('mouseleave', function () { hov = false; });
+      var m = (location.search.match(/[?&]jr=(\d)/) || [])[1]; fgo(m ? +m - 1 : 0); fauto();
+    }
     if (/journal/.test(location.pathname)) document.querySelectorAll('.gnb a[data-nav="journal"]').forEach(function (a) { a.classList.add('on'); });
     var jl = document.querySelector('[data-journal="list"]');
     if (jl) {

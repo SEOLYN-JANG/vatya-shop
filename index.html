@@ -8,11 +8,11 @@
 <meta name="description" content="2017년 식기건조대로 시작한 스테인리스 주방 브랜드 밧드야. 건조대, 설거지통, 음식물쓰레기통, 테이블웨어.">
 <link rel="icon" href="img/logo.svg">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
-<link rel="stylesheet" href="css/vatya.css?v=202611101047">
+<link rel="stylesheet" href="css/vatya.css?v=202611101101">
 <script>(function(){if(/[?&]shot=1/.test(location.search))document.documentElement.style.setProperty('--vh','900px');})();</script>
-<script src="js/products.js?v=202611101047"></script>
-<script src="js/journal.js?v=202611101047"></script>
-<script src="js/vatya.js?v=202611101047" defer></script>
+<script src="js/products.js?v=202611101101"></script>
+<script src="js/journal.js?v=202611101101"></script>
+<script src="js/vatya.js?v=202611101101" defer></script>
 </head>
 <body class="home">
 <div id="wrap">
@@ -155,12 +155,14 @@
   <div class="ctl"><span class="cnt">01 / 03</span><div class="arrows"><button type="button" class="dprev" aria-label="이전"><svg class="ico" viewBox="0 0 24 24"><path d="m15 5-7 7 7 7"/></svg></button><button type="button" class="dnext" aria-label="다음"><svg class="ico" viewBox="0 0 24 24"><path d="m9 5 7 7-7 7"/></svg></button></div></div>
 </section>
 
-<!-- journal: posts from js/journal.js (copied from vatya.co.kr), 2 per view slider. cards open journal_view.html -->
-<section class="jr-main">
-  <div class="head"><div><div class="eyebrow">Journal</div><h2 class="sec">저널</h2></div><div class="right"><a class="btn line sm" href="journal.html">전체 보기</a><div class="arrows"><button type="button" class="jprev" aria-label="이전"><svg class="ico" viewBox="0 0 24 24"><path d="m15 5-7 7 7 7"/></svg></button><button type="button" class="jnext" aria-label="다음"><svg class="ico" viewBox="0 0 24 24"><path d="m9 5 7 7-7 7"/></svg></button></div></div></div>
-  <div class="viewport"><ul data-journal="main"></ul></div>
-</section>
-<footer class="footer2">
+<!-- journal (A안, 2026-11-10): left = feature photo, right = numbered post list. hover/focus a row → photo cross-fades; auto-advances every 5s. data: js/journal.js -->
+<section class="jr-a">
+  <div class="feat" data-journal="feat"></div>
+  <div class="side">
+    <div class="top"><div><div class="eyebrow">Journal</div><h2 class="sec">저널</h2></div><a class="btn line sm" href="journal.html">전체 보기</a></div>
+    <ol data-journal="index"></ol>
+  </div>
+</section><footer class="footer2">
   <h2>VATYA</h2>
   <div class="slogan">Rethink the Everyday</div>
   <div class="cols">
