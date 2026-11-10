@@ -88,6 +88,66 @@
       document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeMenu(); });
       if (/[?&]menu=1/.test(location.search)) { if (/[?&]shot=1/.test(location.search)) document.body.classList.add('noanim'); document.body.classList.add('menu-open'); }
     }
+    /* brand panel: [data-open-about] → vertical stripe wipe on the right half → blue brand panel */
+    var ab = document.getElementById('about');
+    if (ab) {
+      function openAbout(e) { if (e) e.preventDefault(); document.body.classList.remove('menu-open'); document.body.classList.add('about-open'); }
+      function closeAbout() { document.body.classList.remove('about-open'); }
+      document.querySelectorAll('[data-open-about]').forEach(function (b) { b.addEventListener('click', openAbout); });
+      document.querySelectorAll('[data-close-about]').forEach(function (b) { b.addEventListener('click', closeAbout); });
+      document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeAbout(); });
+      if (/[?&]about=1/.test(location.search)) { if (/[?&]shot=1/.test(location.search)) document.body.classList.add('noanim'); document.body.classList.add('about-open'); }
+    }
+    /* journal (data: js/journal.js) */
+    var J = window.VATYA_JOURNAL || [], JC = window.VATYA_JOURNAL_CATS || [];
+    function jimg(p, name) { return 'img/journal/' + p.id + '/' + name + '.jpg'; }
+    function jcard(p) {
+      return '<li><a class="jr-card" href="journal_view.html?id=' + p.id + '"><div class="img"><img src="' + jimg(p, 'cover') + '" alt="' + p.title + '" loading="lazy"></div>' +
+        '<div class="txt"><em>' + p.label + '</em><strong>' + p.title + '</strong><p>' + p.summary + '</p></div></a></li>';
+    }
+    var jm = document.querySelector('[data-journal="main"]');
+    if (jm && J.length) {
+      jm.innerHTML = J.map(jcard).join('');
+      var jsec = jm.closest('.jr-main'), ji = 0, jtm;
+      function jper() { return window.innerWidth < 900 ? 1 : 2; }
+      function jmax() { return Math.max(0, jm.children.length - jper()); }
+      function jgo(n) { ji = Math.max(0, Math.min(jmax(), n)); var li = jm.children[0]; if (!li) return; jm.style.transform = 'translateX(' + (-ji * (li.getBoundingClientRect().width + 2)) + 'px)'; }
+      function jauto() { clearInterval(jtm); if (!/[?&]shot=1/.test(location.search)) jtm = setInterval(function () { jgo(ji >= jmax() ? 0 : ji + 1); }, 5000); }
+      jsec.querySelector('.jprev') && jsec.querySelector('.jprev').addEventListener('click', function () { jgo(ji - 1); jauto(); });
+      jsec.querySelector('.jnext') && jsec.querySelector('.jnext').addEventListener('click', function () { jgo(ji + 1); jauto(); });
+      var jx = 0;
+      jm.addEventListener('touchstart', function (e) { jx = e.touches[0].clientX; }, { passive: true });
+      jm.addEventListener('touchend', function (e) { var dx = e.changedTouches[0].clientX - jx; if (Math.abs(dx) > 40) { jgo(dx < 0 ? ji + 1 : ji - 1); jauto(); } });
+      window.addEventListener('resize', function () { jgo(ji); });
+      jgo(0); jauto();
+    }
+    if (/journal/.test(location.pathname)) document.querySelectorAll('.gnb a[data-nav="journal"]').forEach(function (a) { a.classList.add('on'); });
+    var jl = document.querySelector('[data-journal="list"]');
+    if (jl) {
+      var jc = qs.get('cate') || 'all';
+      var jlist = jc === 'all' ? J : J.filter(function (p) { return p.cats.indexOf(jc) > -1; });
+      document.querySelectorAll('.cats a[data-jcate]').forEach(function (a) { a.classList.toggle('on', a.getAttribute('data-jcate') === jc); });
+      var jn = JC.filter(function (c) { return c.id === jc; })[0];
+      document.querySelectorAll('[data-jcate-name]').forEach(function (el) { el.textContent = jn && jc !== 'all' ? jn.name : '저널'; });
+      var jcnt = document.querySelector('[data-jcount]'); if (jcnt) jcnt.textContent = jlist.length;
+      jl.innerHTML = jlist.length ? jlist.map(jcard).join('') : '';
+      var je = document.querySelector('.jr-empty'); if (je) je.style.display = jlist.length ? 'none' : 'block';
+    }
+    var jv = document.querySelector('.jr-view');
+    if (jv && J.length) {
+      var pid = qs.get('id'), k = 0;
+      J.forEach(function (p, idx) { if (p.id === pid) k = idx; });
+      var post = J[k];
+      document.title = post.title + ' | VATYA 저널';
+      jv.querySelector('.vhead em').textContent = post.label;
+      jv.querySelector('.vhead h1').textContent = post.title;
+      jv.querySelector('.vhead p').innerHTML = post.body.join('<br>');
+      jv.querySelector('.pics').innerHTML = post.images.map(function (n) { return '<img src="' + jimg(post, n) + '" alt="' + post.title + '" loading="lazy">'; }).join('');
+      var pv = J[k - 1], nx = J[k + 1];
+      var pa = jv.querySelector('.jr-nav .prev'), na = jv.querySelector('.jr-nav .next');
+      if (pv) { pa.href = 'journal_view.html?id=' + pv.id; pa.innerHTML = '<small>NEWER</small>' + pv.title; } else pa.style.visibility = 'hidden';
+      if (nx) { na.href = 'journal_view.html?id=' + nx.id; na.innerHTML = '<small>OLDER</small>' + nx.title; } else na.style.visibility = 'hidden';
+    }
     /* header: transparent on home (kept transparent after scroll since 2026-11-09; .scrolled still toggled for future use) */
     var hd = document.querySelector('.header');
     if (hd && document.body.classList.contains('home')) {
