@@ -615,3 +615,35 @@ body.noanim #about,body.noanim #patternV{transition:none}
   .jr-a .feat .tag{left:var(--gx);bottom:16px}
 }
 .jr-a .feat .tag{box-shadow:0 0 0 1px var(--blue)}
+
+/* =====================================================================
+   best sellers v4 (2026-11-11, ref. ilkwdesign.com "Latest Products"): centered title, 4 portrait 3:4 photos per view,
+   caption under the photo = name left / price right, both brand blue. 6 items slide one step at a time.
+   ===================================================================== */
+.best-full{height:auto;display:block;padding:80px var(--gx) 88px;overflow:hidden}
+.best-full .head{position:relative;display:block;text-align:center;padding:0;margin:0 0 40px}
+.best-full .head .eyebrow{margin-bottom:10px}
+.best-full .head h2.sec{font-size:44px;letter-spacing:-.03em}
+.best-full .head .arrows{position:absolute;right:0;bottom:4px}
+.best-full .viewport{flex:none;overflow:hidden}
+.best-full ul{height:auto;gap:8px;background:transparent}
+.best-full .prd{flex:0 0 calc((100% - 24px) / 4);height:auto;background:transparent}
+.best-full .prd a{height:auto}
+.best-full .prd .img{aspect-ratio:3/4;height:auto;background:var(--grey)}
+.best-full .prd .img img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.best-full .prd:hover .img img{transform:scale(1.03)}
+.best-full .prd .tag{display:none}
+.best-full .prd .cap{position:static;display:flex;flex-direction:row;justify-content:space-between;align-items:baseline;gap:12px;padding:12px 0 0;background:none;text-align:left}
+.best-full .prd .cap strong{font-size:16px;font-weight:700;color:var(--blue)}
+.best-full .prd .cap .price{font-size:16px;font-weight:700;color:var(--blue)}
+@media(max-width:899px){
+  .best-full{padding:48px var(--gx) 56px}
+  .best-full .head{margin-bottom:24px}
+  .best-full .head h2.sec{font-size:28px}
+  .best-full .head .arrows{position:static;justify-content:center;margin-top:14px}
+  .best-full ul{gap:6px}
+  .best-full .prd{flex-basis:calc((100% - 6px) / 2)}
+  .best-full .prd .img{aspect-ratio:3/4}
+  .best-full .prd .cap{flex-direction:column;gap:2px;padding-top:8px}
+  .best-full .prd .cap strong,.best-full .prd .cap .price{font-size:14px}
+}
