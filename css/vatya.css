@@ -674,3 +674,14 @@ body.menu-open .to-top,body.about-open .to-top{opacity:0;pointer-events:none}
   #fullmenu h3{font-size:24px;margin-bottom:8px}
   .to-top{right:16px;bottom:16px;width:44px;height:44px}
 }
+/* 2026-11-11 kakao feedback: gap between designers / journal / footer, best title left on the logo line, price right after the name */
+.jr-a{margin-top:96px}
+.footer2{margin-top:96px}
+.best-full .head{text-align:left}
+.best-full .prd .cap{flex-direction:row;align-items:baseline;justify-content:flex-start;flex-wrap:wrap;gap:4px 16px}
+@media(max-width:899px){
+  .jr-a{margin-top:48px}
+  .footer2{margin-top:48px}
+  .best-full .head .arrows{justify-content:flex-start}
+  .best-full .prd .cap{gap:2px 10px}
+}
