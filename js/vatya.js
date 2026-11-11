@@ -78,6 +78,14 @@
       var id = a.getAttribute('data-cate');
       if (cur !== null && id === cur) a.classList.add('on');
     });
+    /* back-to-top button (all pages): appears after 400px of scroll, smooth-scrolls to the top */
+    var tt = document.createElement('button');
+    tt.type = 'button'; tt.className = 'to-top'; tt.setAttribute('aria-label', '맨 위로');
+    tt.innerHTML = '<svg class="ico" viewBox="0 0 24 24"><path d="M12 19V5M5 12l7-7 7 7"/></svg>';
+    document.body.appendChild(tt);
+    tt.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+    function ttsc() { tt.classList.toggle('on', window.scrollY > 400 || /[?&]top=1/.test(location.search)); }
+    window.addEventListener('scroll', ttsc, { passive: true }); ttsc();
     /* full menu: search icon → stripe wipe → blue menu + search */
     var fm = document.getElementById('fullmenu');
     if (fm) {

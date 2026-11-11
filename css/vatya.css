@@ -647,3 +647,30 @@ body.noanim #about,body.noanim #patternV{transition:none}
   .best-full .prd .cap{flex-direction:column;gap:2px;padding-top:8px}
   .best-full .prd .cap strong,.best-full .prd .cap .price{font-size:14px}
 }
+/* =====================================================================
+   2026-11-11 feedback: video back to the 2nd-round size (1160px, gap under the hero, square corners),
+   best captions left-aligned, designers without the middle stripe, full menu: white bigger headings + search at the bottom,
+   back-to-top button
+   ===================================================================== */
+.video{padding:48px 0 16px}
+.video .box{width:min(1160px,100% - 48px);margin:0 auto;border-radius:0}
+.video video{height:clamp(200px,40vw,600px)}
+.best-full .prd .cap{flex-direction:column;align-items:flex-start;justify-content:flex-start;gap:2px}
+.designers .slide{grid-template-columns:1fr 1fr}
+.designers .band{display:none}
+#fullmenu{display:flex;flex-direction:column}
+#fullmenu .body{flex:1 0 auto;align-content:start}
+#fullmenu h3{font-size:36px;font-weight:900;color:#fff;letter-spacing:-.02em;margin-bottom:14px}
+#fullmenu .bottom{margin-top:auto;padding-top:40px;padding-bottom:48px}
+.to-top{position:fixed;right:24px;bottom:24px;z-index:150;width:52px;height:52px;border-radius:50%;border:0;background:var(--blue);color:#fff;display:grid;place-items:center;cursor:pointer;box-shadow:0 6px 20px rgba(0,61,165,.28);opacity:0;transform:translateY(12px);pointer-events:none;transition:opacity .25s,transform .25s}
+.to-top.on{opacity:1;transform:none;pointer-events:auto}
+.to-top .ico{width:22px;height:22px;stroke-width:2.2}
+body.menu-open .to-top,body.about-open .to-top{opacity:0;pointer-events:none}
+@media(max-width:899px){
+  .video{padding:16px 0 4px}
+  .video .box{width:min(1160px,100% - 32px)}
+  .video video{height:clamp(200px,52vw,600px)}
+  .designers .slide{grid-template-columns:1fr}
+  #fullmenu h3{font-size:24px;margin-bottom:8px}
+  .to-top{right:16px;bottom:16px;width:44px;height:44px}
+}
